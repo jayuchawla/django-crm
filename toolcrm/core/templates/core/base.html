@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+  <nav class="py-6 px-6 bg-teal-500 flex justify-between">
+    <a href="/" class="text-white">Tool CRM</a>
+    <div class="space-x-4">
+        <a href="{% url 'about' %}" class="text-white">About</a>
+        <a href="/" class="py-4 px-6 bg-teal-600 text-white rounded-xl">Log In</a>
+        <a href="/" class="py-4 px-6 bg-teal-300 text-white rounded-xl">Sign Up</a>
+    </div>
+  </nav>
+  {% block content %}
+  {% endblock %}
+  <footer class="py-8 text-center bg-gray-200">
+    <p class="text-xs text-gray-700">Copyright (c) 2024 - Tool CRM</p>
+  </footer>
+
+</body>
+</html>
