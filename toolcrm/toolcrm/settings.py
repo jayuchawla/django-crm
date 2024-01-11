@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'core',
     'toolcrm',
     'userprofile',
-    'dashboard'
+    'dashboard',
+    'leads',
 ]
 
 MIDDLEWARE = [
