@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}
+{% block title %} Log In {% endblock %}
+
+{% block content %}
+    <h1 class="text-lg">Log In</h1>
+    <form method="POST" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="py-4 px-4 bg-teal-500 text-white rounded-xl">Submit</button>
+    </form>
+{% endblock %}
