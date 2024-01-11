@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'toolcrm',
-    'userprofile'
+    'userprofile',
+    'dashboard'
 ]
 
 MIDDLEWARE = [
