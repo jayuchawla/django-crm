@@ -22,7 +22,8 @@
         <p class="font-semibold">Last Modified</p>
         <p class="mb-2">{{ lead.modified_at }}</p>
 
-        <a class="py-1 px-1 bg-red-600 rounded" href="{% url 'lead_delete' lead.id %}">Delete</a>
-        <a class="py-1 px-1 bg-teal-500 rounded" href="{% url 'leads_list' %}">Back to leads</a>
+        <a class="py-1 px-1 bg-teal-400 rounded text-white" href="{% url 'edit_lead' lead.id %}">Edit</a>
+        <a class="py-1 px-1 bg-red-600 rounded text-white" href="{% url 'lead_delete' lead.id %}">Delete</a>
+        <a class="py-1 px-1 bg-teal-500 rounded text-white" href="{% url 'leads_list' %}">Back to leads</a>
     </div>
 {% endblock %}
