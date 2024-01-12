@@ -20,9 +20,11 @@ from django.contrib.auth.views import LoginView, LogoutView
 from core.views import index, about
 from userprofile.views import signup
 from dashboard import urls as dashboardUrls
+from leads import urls as leadsUrls
 
 urlpatterns = [
     path(route='', view=index, name='index'),
+    path("dashboard/leads/", include(leadsUrls)),
     path("dashboard/", include(dashboardUrls)),
     path(route='about/', view=about, name='about'),
     path(route='sign-up/', view=signup, name='signup'),
