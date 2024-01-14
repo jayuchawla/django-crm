@@ -8,6 +8,7 @@ from .forms import AddLeadForm
 from .models import Lead
 
 from clients.models import Client
+from teams.models import Team
 
 # Create your views here.
 @login_required
@@ -27,6 +28,8 @@ def add_lead(request):
         if form.is_valid():
             lead = form.save(commit=False)
             lead.created_by = request.user
+            # NOTE: the request user may own multiple teams, we select the first one
+            lead.team = Team.objects.filter(created_by=request.user)[0]
             lead.save()
             messages.success(request=request, message='Lead created successfully.')
             return redirect(reverse('leads_list'))
@@ -65,7 +68,8 @@ def convert_to_client(request, pk):
         last_name = lead.last_name,
         email = lead.email,
         description = lead.description,
-        created_by = request.user
+        created_by = request.user,
+        team = Team.objects.filter(created_by=request.user)[0]
     )
     lead.converted_to_client = True
     lead.save()
