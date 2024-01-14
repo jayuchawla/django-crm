@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+
+{% block title %}My Clients{% endblock %}
+
+{% block content %}
+    <div class="py-6 px-6">
+        <h1 class="mb-4 text-xl">My Clients</h1>
+        {% if not clients %}
+            <p class="py-4 px-2 font-semibold w-full">No Clients Yet!</p>
+        {% else %}
+            <div class="flex justify-between">
+                <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Name</p>
+                <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Status</p>
+                <p class="py-4 px-2 bg-gray-200 font-semibold w-full">Priority</p>
+            </div>
+            {% for client in clients %}
+                <a href="{% url 'client_detail' client.id %}">
+                    <div class="flex justify-between">
+                        <p class="py-2 px-2 w-full {% cycle 'bg-gray-100' '' %}">{{ client.first_name }} {{ client.last_name }}</p>
+                        <p class="py-2 px-2 w-full {% cycle 'bg-gray-100' '' %}">{{ client.get_status_display }}</p>
+                        <p class="py-2 px-2 w-full {% cycle 'bg-gray-100' '' %}">{{ client.get_priority_display }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -21,10 +21,12 @@ from core.views import index, about
 from userprofile.views import signup
 from dashboard import urls as dashboardUrls
 from leads import urls as leadsUrls
+from clients import urls as clientsUrls
 
 urlpatterns = [
     path(route='', view=index, name='index'),
     path("dashboard/leads/", include(leadsUrls)),
+    path("dashboard/clients/", include(clientsUrls)),
     path("dashboard/", include(dashboardUrls)),
     path(route='about/', view=about, name='about'),
     path(route='sign-up/', view=signup, name='signup'),

@@ -7,10 +7,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import AddLeadForm
 from .models import Lead
 
+from clients.models import Client
+
 # Create your views here.
 @login_required
 def leads_list(request):
-    leads = Lead.objects.filter(created_by=request.user)
+    leads = Lead.objects.filter(created_by=request.user, converted_to_client=False)
     return render(request=request, template_name="leads/leads_list.html", context={'leads':leads})
 
 @login_required
@@ -55,3 +57,17 @@ def edit_lead(request, pk):
         form = AddLeadForm(instance=lead)
         return render(request=request, template_name='leads/edit_lead.html', context={'form':form})
     
+@login_required
+def convert_to_client(request, pk):
+    lead = get_object_or_404(Lead, created_by=request.user, pk=pk)
+    client = Client.objects.create(
+        first_name = lead.first_name,
+        last_name = lead.last_name,
+        email = lead.email,
+        description = lead.description,
+        created_by = request.user
+    )
+    lead.converted_to_client = True
+    lead.save()
+    messages.success(request=request, message='Lead: {} coverted to client.'.format(lead.first_name + " " + lead.last_name))
+    return redirect(reverse('leads_list'))

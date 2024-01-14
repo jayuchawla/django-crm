@@ -29,6 +29,7 @@ class Lead(models.Model):
     priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     created_by = models.ForeignKey(User, related_name="leads", on_delete=models.CASCADE)
+    converted_to_client = models.BooleanField(default=False)
     # auto_now_add -> each time new object created
     created_at = models.DateTimeField(auto_now_add=True)
     # auto_now_add -> each time an object modified
