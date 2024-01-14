@@ -18,15 +18,18 @@ from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 
 from core.views import index, about
-from userprofile.views import signup
+from userprofile.views import signup, my_account
 from dashboard import urls as dashboardUrls
 from leads import urls as leadsUrls
 from clients import urls as clientsUrls
+from teams import urls as teamsUrls
 
 urlpatterns = [
     path(route='', view=index, name='index'),
     path("dashboard/leads/", include(leadsUrls)),
     path("dashboard/clients/", include(clientsUrls)),
+    path(route='dashboard/myaccount/', view=my_account, name='myaccount'),
+    path('dashboard/teams/', include(teamsUrls)),
     path("dashboard/", include(dashboardUrls)),
     path(route='about/', view=about, name='about'),
     path(route='sign-up/', view=signup, name='signup'),
